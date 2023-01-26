@@ -58,7 +58,7 @@ function rps(playerSelection, computerSelection, score) {
         return [`You Lose! ${computerSelection} beats ${playerSelection}!`, score];
     } else
         if (win == 1) {
-            return [`Draw! Both players chose ${computerSelection}! (${playerSelection})`, score];
+            return [`Draw! Both players chose ${computerSelection}!`, score];
         }
         else {
             score[0] += 1;
