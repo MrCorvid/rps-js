@@ -1,4 +1,9 @@
-const start = document.querySelector("button");
+const rock = document.querySelector("button.rock");
+const paper = document.querySelector("button.paper");
+const scissors = document.querySelector("button.scissors");
+const output = document.querySelector("div.output");
+const outputScore = document.querySelector("div.score");
+score = [0,0];
 
 function getComputerChoice() {
     let rand = Math.floor(Math.random() * 300);
@@ -101,4 +106,35 @@ function game() {
 
 }
 
-start.addEventListener('click', game);
+function round(choice) {
+    let hand = rps(choice, getComputerChoice(), score);
+
+    score = hand[1];
+    if (score[0] == -1) {
+        output.textContent = "You've exit. Come back again!";
+        return;
+    }
+
+    output.textContent = hand[0];
+
+    outputScore.textContent = displayScore(score);
+
+    if (score[0] + score[1] >= 5) {
+            if (score[0] > score[1]) {
+                output.textContent = "Congratulations! You win!";
+            } else
+            if (score[1] > score[0]) {
+                output.textContent = "Better luck next time! You lose!";
+            }
+            else {
+                output.textContent = "It's a Draw! Play again?";    
+            }
+    score = [0,0];
+    }
+
+}
+
+//start.addEventListener('click', game);
+rock.addEventListener('click', () => {round("Rock")});
+paper.addEventListener('click', () => {round("Paper")});
+scissors.addEventListener('click', () => {round("Scissors")});
